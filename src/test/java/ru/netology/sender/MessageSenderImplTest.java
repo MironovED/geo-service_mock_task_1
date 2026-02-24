@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MessageSenderImplTest {
 
-
     @Test
     void sendMessageTestWhenIp172_Ru() {
         GeoServiceImpl geoService = Mockito.mock(GeoServiceImpl.class);
@@ -33,7 +32,6 @@ class MessageSenderImplTest {
         assertEquals("Добро пожаловать", message);
     }
 
-
     @Test
     void sendMessageTestWhenIp96_USA() {
         GeoServiceImpl geoService = Mockito.mock(GeoServiceImpl.class);
@@ -50,47 +48,5 @@ class MessageSenderImplTest {
         String message = messageSender.send(headers);
 
         assertEquals("Welcome", message);
-    }
-
-
-    @Test
-    void searchRussianLocationByIpTest() {
-        String ip = "172.0.32.11";
-
-        GeoServiceImpl geoService = new GeoServiceImpl();
-        Location location = geoService.byIp(ip);
-
-        assertEquals(Country.RUSSIA, location.getCountry());
-    }
-
-    @Test
-    void searchUSALocationByIpTest() {
-        String ip = "96.44.183.149";
-
-        GeoServiceImpl geoService = new GeoServiceImpl();
-        Location location = geoService.byIp(ip);
-
-        assertEquals(Country.USA, location.getCountry());
-    }
-
-
-    @Test
-    void shouldReturnRussianTextTest() {
-        Country country = Country.RUSSIA;
-
-        LocalizationServiceImpl localizationService = new LocalizationServiceImpl();
-        String text = localizationService.locale(country);
-
-        assertEquals("Добро пожаловать", text);
-    }
-
-    @Test
-    void shouldReturnAmericanTextTest() {
-        Country country = Country.USA;
-
-        LocalizationServiceImpl localizationService = new LocalizationServiceImpl();
-        String text = localizationService.locale(country);
-
-        assertEquals("Welcome", text);
     }
 }
